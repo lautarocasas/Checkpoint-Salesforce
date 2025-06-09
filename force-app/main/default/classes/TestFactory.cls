@@ -26,7 +26,7 @@ public with sharing class TestFactory {
             Proyecto__c project = new Proyecto__c();
             project.Name = 'Proyecto '+i;
             project.Fecha_de_Inicio__c = Date.today().addDays(5);
-            project.Presupuesto__c = 123.456;
+            project.Presupuesto__c = 123456;
             project.Estado__c = state;
             project.Numero_de_Recursos__c = 10;
             project.Descripcion__c = 'Test project';
