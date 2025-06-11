@@ -1,0 +1,5 @@
+lightning-card:hover{
+    cursor: pointer;
+    --slds-c-card-color-background: var(--slds-g-color-palette-cloud-blue-90);
+}
+
