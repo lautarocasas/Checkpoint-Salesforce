@@ -7,7 +7,7 @@ export default class AccountTile extends LightningElement {
     accountsResources;
 
     get presupuesto() {
-        return this.account?.Presupuesto_promedio__c ?? 0;
+        return this.account?.Total_Presupuestos__c ?? 0;
     }
 
     get totalResources() {

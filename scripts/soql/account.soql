@@ -3,4 +3,9 @@
 //     query text and running the command:
 //     SFDX: Execute SOQL Query with Currently Selected Text
 
-SELECT Id, Name FROM Account
+SELECT Id,Name,Maximo_de_proyectos_activos__c,Presupuesto_promedio__c FROM Account
+
+SELECT Account__c acc, COUNT(Id)cnt
+FROM Proyecto__c
+WHERE Estado__c = 'En Progreso'
+GROUP BY Account
