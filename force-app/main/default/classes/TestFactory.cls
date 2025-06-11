@@ -36,4 +36,24 @@ public with sharing class TestFactory {
         }
         return projects;
     }
+
+    /**
+        * @description Metodo que genera un usuario con un perfil proporcionado
+        * @param alias El alias con el que va a crearse el usuario
+        * @param profile El perfil con el que va a generarse el usuario
+        * @return El usuario generado
+    */
+    public static User createUserWithProfile(String alias, Profile profile){
+        User u = new User(
+            Alias = alias,
+            Email='standarduser@testorg.com',
+            EmailEncodingKey='UTF-8',
+            LastName='Testing',
+            LanguageLocaleKey='en_US',
+            LocaleSidKey='en_US',
+            ProfileId = profile.Id,
+            TimeZoneSidKey='America/Los_Angeles',
+            UserName='standarduser' + DateTime.now().getTime() + '@testorg.com');
+        return u;
+    }
 }

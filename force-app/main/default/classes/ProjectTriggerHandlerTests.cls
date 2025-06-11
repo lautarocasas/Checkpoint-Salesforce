@@ -3,21 +3,9 @@ public with sharing class ProjectTriggerHandlerTests {
     @TestSetup
     static void makeData(){
         Account acct = new Account(Name = 'TestAccount', Maximo_de_proyectos_activos__c = 5);
-        // Setup test data
-        // Create a unique UserName
-        String uniqueUserName = 'standarduser' + DateTime.now().getTime() + '@testorg.com';
-        // This code runs as the system user
+
         List<Profile> p = [SELECT Id FROM Profile WHERE Name='System Administrator' LIMIT 1];
-        User u = new User(
-            Alias = 'standt',
-            Email='standarduser@testorg.com',
-            EmailEncodingKey='UTF-8',
-            LastName='Testing',
-            LanguageLocaleKey='en_US',
-            LocaleSidKey='en_US',
-            ProfileId = p[0].Id,
-            TimeZoneSidKey='America/Los_Angeles',
-            UserName=uniqueUserName);
+        User u = TestFactory.createUserWithProfile('standt', p[0]);
         insert u;
         insert acct;
     }
