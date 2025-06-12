@@ -49,24 +49,24 @@ export default class AccountProjects extends LightningElement {
         const row = event.detail.row;
 
         if (actionName === 'delete') {
-            deleteRecord(row.Id).
-            then(()=>{
-                const toastEvent = new ShowToastEvent({
-                title: "Registro borrado",
-                message: "Record ID: " + event.detail.id,
-                variant: "success"
+            deleteRecord(row.Id)
+                .then(() => {
+                    const toastEvent = new ShowToastEvent({
+                        title: "Registro borrado",
+                        message: "Record ID: " + row.Id,
+                        variant: "success"
+                    });
+                    this.dispatchEvent(toastEvent);
+                    refreshApex(this.projects);
+                })
+                .catch(error => {
+                    const toastEvent = new ShowToastEvent({
+                        title: 'Error al eliminar',
+                        message: error.body.message,
+                        variant: 'error'
+                    });
+                    this.dispatchEvent(toastEvent);
                 });
-                this.dispatchEvent(toastEvent);
-                refreshApex(this.projects);
-            })
-            .catch(error => {
-                const toastEvent = new ShowToastEvent({
-                    title: 'Error al eliminar',
-                    message: error.body.message,
-                    variant: 'error'
-                });
-                this.dispatchEvent(toastEvent);
-            });
         }
     }
 
