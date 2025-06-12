@@ -93,4 +93,25 @@ public with sharing class ProjectTriggerHandler{
             }
         }
     }
+
+    /**
+        * @description Metodo que actualiza el campo descripcion de un contacto asociado a un proyecto
+        * @param newProjects Los proyectos que fueron insertados o actualizados
+    */
+    public static void handleHighBudget(List<Proyecto__c> newProjects){
+        List<Contact> updatedContacts = new List<Contact>();
+        for(Proyecto__c p: newProjects){
+            if(p.Contact__c != null){
+                Contact c = new Contact();
+                c.Id = p.Contact__c;
+                c.Descripcion__c = 'Este contacto está asociado con un proyecto con presupuesto alto.';
+                updatedContacts.add(c);
+            }
+        }
+        if (!Schema.sObjectType.Contact.fields.Descripcion__c.isUpdateable()){
+            return;
+        }
+
+        update updatedContacts;
+    }
 }
