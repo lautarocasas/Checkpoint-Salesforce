@@ -4,7 +4,7 @@ import searchAccount from '@salesforce/apex/AccountController.searchAccount';
 export default class AccountsComponents extends LightningElement {
     searchTerm = '';
     accounts;
-    selectedAccountId;
+    selectedAccount;
 
     @wire(searchAccount, {searchTerm: '$searchTerm'})
     loadAccounts(result){
@@ -20,6 +20,6 @@ export default class AccountsComponents extends LightningElement {
     }
 
     handleAccountSelected(event) {
-        this.selectedAccountId = event.detail;
+        this.selectedAccount = event.detail;
     }
 }
