@@ -1,4 +1,6 @@
 trigger ProjectTrigger on Proyecto__c (after insert,after update,after delete,before insert,before update,before delete) {
+    if(TriggerControl.skipTriggers) return;
+
     if(Trigger.isBefore){
         if(Trigger.isInsert){
             //Antes de actualizar o insertar registros de proyecto
@@ -13,6 +15,7 @@ trigger ProjectTrigger on Proyecto__c (after insert,after update,after delete,be
         //Luego de haber insertado, actualizado o eliminados registros de proyecto
         if(Trigger.isInsert || Trigger.isUpdate){
             ProjectTriggerHandler.updateAverageBudgets(Trigger.new);
+            ProjectTriggerHandler.handleHighBudget(Trigger.new);
         }
         else{
             ProjectTriggerHandler.updateAverageBudgets(Trigger.old);
