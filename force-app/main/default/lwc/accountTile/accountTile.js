@@ -16,7 +16,7 @@ export default class AccountTile extends LightningElement {
 
     handleClick() {
         const selectedEvent = new CustomEvent('accountselected', {
-            detail: this.account.Id
+            detail: this.account
         });
         this.dispatchEvent(selectedEvent);
     }
