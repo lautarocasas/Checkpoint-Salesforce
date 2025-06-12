@@ -1,7 +1,7 @@
 <template>
-    <lightning-card title="Proyectos asociados a la cuenta">
-        <lightning-layout horizontal-align="start" vertical-align="top">
-            <lightning-layout-item size="6" padding="around-small">
+    <lightning-layout horizontal-align="start" vertical-align="top">
+        <lightning-layout-item size="6" padding="around-small">
+            <lightning-card title={cardTitle} icon-name="custom:custom18">
                 <template if:true={projects.data}>
                     <lightning-datatable
                         key-field="Id"
@@ -14,21 +14,35 @@
                 <template if:true={projects.error}>
                     <p class="slds-text-color_error">Error al cargar proyectos: {projects.error.body.message}</p>
                 </template>
-            </lightning-layout-item>
-            <lightning-layout-item size="6" padding="around-small">
-                <lightning-record-form
+            </lightning-card>
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="around-small">
+            <lightning-card title="Agregar nuevo proyecto a la cuenta seleccionada" icon-name="utility:add">
+                <lightning-record-edit-form
                     object-api-name="Proyecto__c"
-                    fields={fields}
                     onsuccess={handleSuccess}
                     onerror={handleError}
-                    record-type-id={recordTypeId}
-                    columns="2"
-                    mode="edit"
-                    title="Crear nuevo proyecto"
-                    layout-type="Compact">
+                    record-type-id={recordTypeId}>
+
+                    <lightning-messages></lightning-messages>
+
+                    <lightning-input-field field-name="Name"></lightning-input-field>
+                    <lightning-input-field field-name="Fecha_de_Inicio__c"></lightning-input-field>
+                    <lightning-input-field field-name="Presupuesto__c"></lightning-input-field>
+                    <lightning-input-field field-name="Estado__c"></lightning-input-field>
+                    <lightning-input-field field-name="Numero_de_Recursos__c"></lightning-input-field>
+                    <lightning-input-field field-name="Descripcion__c"></lightning-input-field>
+                    <lightning-input-field field-name="Contact__c"></lightning-input-field>
                     <lightning-input-field field-name="Account__c" value={accountId} class="slds-hide"></lightning-input-field>
-                </lightning-record-form>
-            </lightning-layout-item>
-        </lightning-layout>
-    </lightning-card>
+
+                    <lightning-button
+                        class="slds-m-top_small"
+                        variant="brand"
+                        type="submit"
+                        label="Guardar proyecto">
+                    </lightning-button>
+                </lightning-record-edit-form>
+            </lightning-card>
+        </lightning-layout-item>
+    </lightning-layout>
 </template>

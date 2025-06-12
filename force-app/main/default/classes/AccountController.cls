@@ -13,7 +13,8 @@ public with sharing class AccountController {
                 Id,
                 Name,
                 Maximo_de_proyectos_activos__c,
-                Presupuesto_promedio__c
+                Presupuesto_promedio__c,
+                Total_Presupuestos__c
             FROM Account
             WITH USER_MODE
             ORDER BY Name
@@ -38,7 +39,8 @@ public with sharing class AccountController {
                 Id,
                 Name,
                 Maximo_de_proyectos_activos__c,
-                Presupuesto_promedio__c
+                Presupuesto_promedio__c,
+                Total_Presupuestos__c
             FROM Account
             WHERE Name LIKE :searchTerm
             WITH USER_MODE
